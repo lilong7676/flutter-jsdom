@@ -1,0 +1,27 @@
+{
+  "name": "flutter-jsdom",
+  "version": "1.0.0",
+  "description": "render jsdom with native flutter",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd packages/example && flutter run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilong7676/flutter-jsdom.git"
+  },
+  "keywords": [
+    "flutter",
+    "js",
+    "dom",
+    "bom"
+  ],
+  "author": "lilong7676@outlook.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lilong7676/flutter-jsdom/issues"
+  },
+  "homepage": "https://github.com/lilong7676/flutter-jsdom#readme"
+}
