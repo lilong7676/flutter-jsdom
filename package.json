@@ -5,12 +5,26 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd packages/example && flutter run"
+    "start": "cd packages/example && flutter run",
+    "commit": "cz",
+    "commitlint": "commitlint",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lilong7676/flutter-jsdom.git"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "commitizen": "^4.2.4",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "keywords": [
     "flutter",
