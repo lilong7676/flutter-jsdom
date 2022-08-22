@@ -67,3 +67,8 @@ Podfile.lock
 temp
 coverage
 pubspec.lock
+
+# cpp
+xcschememanagement.plist
+cmake-build-*
+build

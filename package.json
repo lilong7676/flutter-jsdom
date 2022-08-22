@@ -6,6 +6,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "cd packages/example && flutter run",
+    "build:macos": "node flutter-jsdom/scripts/build_darwin_dylib.js",
     "commit": "cz",
     "commitlint": "commitlint",
     "test": "echo \"Error: no test specified\" && exit 1"
