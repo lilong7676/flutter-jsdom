@@ -45,6 +45,7 @@ function build() {
   //   externCmakeArgs.push('-DSTATIC_QUICKJS=true');
   // }
 
+  // 生成 cmake 工程
   execSync(`cmake -DCMAKE_BUILD_TYPE=${buildType} -DENABLE_TEST=true ${externCmakeArgs.join(' ')} \
     -G "Unix Makefiles" -B ${paths.bridge}/cmake-build-macos-x86_64 -S ${paths.bridge}`, {
     cwd: paths.bridge,
@@ -64,14 +65,20 @@ function build() {
   //   jsdomTargets.push('webf_test');
   // }
 
+  // 根据生产的 cmake 工程构建 lib
   execSync(`cmake --build ${paths.bridge}/cmake-build-macos-x86_64 --target ${jsdomTargets.join(' ')} -- -j 6`, {
     stdio: 'inherit'
   });
 
   const binaryPath = path.join(paths.bridge, `build/macos/lib/x86_64/libjsdom.dylib`);
 
+  // 对构建产物进一步处理
   if (buildMode == 'Release' || buildMode == 'RelWithDebInfo') {
+    // 使用 dsymutil 指令，从可执行文件中生成符号文件
+    // https://www.jianshu.com/p/6e1d1f26bac8
     execSync(`dsymutil ${binaryPath}`, { stdio: 'inherit' });
+    // Strip（移除或者修改符号表中的符号）
+    // https://www.jianshu.com/p/17a7dd7591c1
     execSync(`strip -S -X -x ${binaryPath}`, { stdio: 'inherit' });
   }
 
