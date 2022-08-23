@@ -114,6 +114,7 @@ target_compile_definitions(jsdom PUBLIC -DFLUTTER_BACKEND=1)
 target_include_directories(jsdom PRIVATE
   ${BRIDGE_INCLUDE}
   ${CMAKE_CURRENT_SOURCE_DIR} PUBLIC ./include)
+# jsdom 链接 BRIDGE_LINK_LIBS
 target_link_libraries(jsdom PRIVATE ${BRIDGE_LINK_LIBS})
 
 if (${CMAKE_BUILD_TYPE} STREQUAL "Release" OR ${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
@@ -127,6 +128,7 @@ endif ()
 target_include_directories(jsdom_static PRIVATE
   ${BRIDGE_INCLUDE}
   ${CMAKE_CURRENT_SOURCE_DIR} PUBLIC ./include)
+# jsdom_static 链接 BRIDGE_LINK_LIBS
 target_link_libraries(jsdom_static ${BRIDGE_LINK_LIBS})
 
 
@@ -134,6 +136,7 @@ if (${ENABLE_TEST})
   add_compile_definitions(IS_TEST=true)
 endif ()
 
+# 设置 target lib 的生成路径
 if (DEFINED ENV{LIBRARY_OUTPUT_DIR})
   set_target_properties(jsdom
     PROPERTIES
