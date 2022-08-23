@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:14:54
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-22 14:48:35
+ * @Last Modified time: 2022-08-23 11:29:40
  */
 
 #ifndef JSDOM_PAGE_H_
@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <stddef.h>
 #include <string.h>
-#include "bindings/qjs/executing_context.h"
+#include "bindings/qjs/execution_context.h"
 
 struct NativeString {
   const uint16_t* string;
@@ -23,11 +23,15 @@ struct NativeString {
 };
 
 namespace jsdom {
+class JSDomPage;
+
 class JSDomPage {
  public:
-  JSDomPage(int32_t jsContext);
+  static jsdom::JSDomPage** pagePool;
 
-  void evaluateScript(int32_t contextId, const char* script);
+  JSDomPage(int32_t pageId);
+
+  void evaluateScript(const char* script);
 
  private:
   binding::qjs::ExecutionContext* m_context;

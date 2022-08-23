@@ -16,7 +16,7 @@ string(REGEX REPLACE "\n$" "" DART_SDK "${DART_SDK}")
 message(STATUS "dart_sdk ${DART_SDK}")
 
 list(APPEND JSDom_PUBLIC_HEADERS
-      ${CMAKE_CURRENT_SOURCE_DIR}/include/bridge.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/include/jsdom_bridge.h
 )
 
 set(QUICKJS_PUBLIC_HEADERS
@@ -87,21 +87,21 @@ list(APPEND BRIDGE_LINK_LIBS quickjs)
 
 # BRIDGE_SOURCE
 list(APPEND BRIDGE_SOURCE
-        bridge.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/bridge.h
+        jsdom_bridge.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/jsdom_bridge.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/dart_methods.h
         dart_methods.cpp
 )
 list(APPEND BRIDGE_SOURCE
     page.cpp
     page.h
-    bindings/qjs/executing_context.cpp
-    bindings/qjs/executing_context.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/bindings/qjs/execution_context.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/bindings/qjs/execution_context.h
 )
 
 # PUBLIC_HEADER
 list(APPEND PUBLIC_HEADER
-  include/bridge.h
+  include/jsdom_bridge.h
 )
 
 # jsdom lib
@@ -112,6 +112,7 @@ target_compile_definitions(jsdom PUBLIC -DFLUTTER_BACKEND=1)
 
 ### jsdom
 target_include_directories(jsdom PRIVATE
+  ${BRIDGE_INCLUDE}
   ${CMAKE_CURRENT_SOURCE_DIR} PUBLIC ./include)
 target_link_libraries(jsdom PRIVATE ${BRIDGE_LINK_LIBS})
 
@@ -124,6 +125,7 @@ endif ()
 
 ### jsdom Static
 target_include_directories(jsdom_static PRIVATE
+  ${BRIDGE_INCLUDE}
   ${CMAKE_CURRENT_SOURCE_DIR} PUBLIC ./include)
 target_link_libraries(jsdom_static ${BRIDGE_LINK_LIBS})
 
