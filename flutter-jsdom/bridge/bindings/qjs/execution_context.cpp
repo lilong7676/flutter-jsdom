@@ -3,17 +3,29 @@
 #include <iostream>
 
 namespace jsdom::binding::qjs {
+
+static JSRuntime* m_runtime{nullptr};
+
 ExecutionContext::ExecutionContext(int32_t contextId, void* owner) : contextId(contextId), owner(owner) {
-  std::cout << "ExecutionContext init" << std::endl;
+  std::cout << "ExecutionContext::init" << std::endl;
+  // 构造一个 JS 运行时
+  if (m_runtime == nullptr) {
+    m_runtime = JS_NewRuntime();
+    std::cout << "m_runtime" << std::endl;
+  }
+  // 根据运行时构建一个上下文环境
+  m_context = JS_NewContext(m_runtime);
+  std::cout << "m_context" << std::endl;
 }
 
 bool ExecutionContext::evaluateJavaScript(const char* code, size_t codeLength, const char* sourceURL, int startLine) {
-  std::cout << "ExecutionContext evaluateJs code:" << code << std::endl;
+  std::cout << "ExecutionContext::evaluateJs code:" << code << std::endl;
+  if (m_context == nullptr) {
+    return false;
+  }
 
-  // 构造一个 JS 运行时
-  JSRuntime* runtime = JS_NewRuntime();
-  // 根据运行时构建一个上下文环境
-  m_context = JS_NewContext(runtime);
+  return false;
+
   // 调用 C 的 std 方法帮助在控制台输出调试信息
   // js_std_add_helpers(m_context, 0, NULL);
 

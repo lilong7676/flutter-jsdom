@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "cd packages/example && flutter run",
+    "start": "cd flutter-jsdom/jsdom/example && fvm flutter run",
+    "start:clean": "cd flutter-jsdom/jsdom/example && fvm flutter clean && fvm flutter run",
     "build:macos": "node flutter-jsdom/scripts/build_darwin_dylib.js",
     "commit": "cz",
     "commitlint": "commitlint",

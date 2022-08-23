@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:14:54
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-23 11:29:40
+ * @Last Modified time: 2022-08-23 17:13:37
  */
 
 #ifndef JSDOM_PAGE_H_
@@ -28,8 +28,10 @@ class JSDomPage;
 class JSDomPage {
  public:
   static jsdom::JSDomPage** pagePool;
+  int32_t pageId;
 
   JSDomPage(int32_t pageId);
+  ~JSDomPage();
 
   void evaluateScript(const char* script);
 

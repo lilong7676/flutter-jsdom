@@ -3,11 +3,13 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:05:26
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-23 14:34:52
+ * @Last Modified time: 2022-08-23 16:45:44
  */
 
 #include "include/jsdom_bridge.h"
 #include "page.h"
+
+#include <iostream>
 
 int maxPagePoolSize = 0;
 bool inited = false;
