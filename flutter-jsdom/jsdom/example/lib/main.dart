@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    _jsdomPlugin.executeJavascript("console.log('hello jsdom')");
+    _jsdomPlugin.executeJavascript("var a = 1 + 2; a;");
 
     setState(() {
       _platformVersion = platformVersion;

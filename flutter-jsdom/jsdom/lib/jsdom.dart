@@ -1,9 +1,9 @@
 import 'dart:ffi';
-import 'dart:io' show Platform;
-
 import 'package:ffi/ffi.dart';
-import 'package:path/path.dart';
+
 import 'jsdom_platform_interface.dart';
+
+import 'src/dynamic_library.dart';
 
 typedef NativeInitJSDomPagePool = Void Function(Int32 poolSize);
 typedef DartInitJsDomPagePool = void Function(int poolSize);
@@ -18,22 +18,17 @@ class Jsdom {
   }
 
   void executeJavascript(String code) {
-    DynamicLibrary dylib = DynamicLibrary.open(join('', 'libjsdom.dylib'));
-    var initJsDomPage =
-        dylib.lookupFunction<NativeInitJSDomPagePool, DartInitJsDomPagePool>(
-            'initJSDomPagePool');
+    DartInitJsDomPagePool initJsDomPage = JsDomDynamicLibrary.ref
+        .lookup<NativeFunction<NativeInitJSDomPagePool>>('initJSDomPagePool')
+        .asFunction();
 
     initJsDomPage(1024);
 
-    var evaluateScripts =
-        dylib.lookupFunction<NativeEvaluateScripts, DartEvaluateScripts>(
-            'evaluateScript');
-    var nativeCode = code.toNativeUtf8();
+    DartEvaluateScripts evaluateScripts = JsDomDynamicLibrary.ref
+        .lookup<NativeFunction<NativeEvaluateScripts>>('evaluateScript')
+        .asFunction();
+    Pointer<Utf8> nativeCode = code.toNativeUtf8();
 
-    try {
-      evaluateScripts(0, nativeCode);
-    } catch (e, stack) {
-      print('$e\n$stack');
-    }
+    evaluateScripts(0, nativeCode);
   }
 }

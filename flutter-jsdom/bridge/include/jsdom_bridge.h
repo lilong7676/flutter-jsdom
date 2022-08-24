@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:10:01
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-24 10:54:47
+ * @Last Modified time: 2022-08-24 16:43:49
  */
 #ifndef JSDOM_BRIDGE_H_
 #define JSDOM_BRIDGE_H_
@@ -27,8 +27,5 @@ void* getPage(int32_t contextId);
 
 JSDOM_EXPORT_C
 void evaluateScript(int32_t contextId, const char* script);
-
-JSDOM_EXPORT_C
-void testEvaluateScript(int32_t contextId);
 
 #endif
