@@ -30,6 +30,10 @@ class Jsdom {
             'evaluateScript');
     var nativeCode = code.toNativeUtf8();
 
-    evaluateScripts(0, nativeCode);
+    try {
+      evaluateScripts(0, nativeCode);
+    } catch (e, stack) {
+      print('$e\n$stack');
+    }
   }
 }

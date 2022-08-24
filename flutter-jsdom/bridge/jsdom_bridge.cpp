@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:05:26
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-23 16:45:44
+ * @Last Modified time: 2022-08-24 10:54:44
  */
 
 #include "include/jsdom_bridge.h"
@@ -48,4 +48,9 @@ void* getPage(int32_t pageId) {
 void evaluateScript(int32_t contextId, const char* script) {
   auto page = static_cast<jsdom::JSDomPage*>(getPage(contextId));
   page->evaluateScript(script);
+}
+
+void testEvaluateScript(int32_t contextId) {
+  auto page = static_cast<jsdom::JSDomPage*>(getPage(contextId));
+  page->testEvaluateScript();
 }

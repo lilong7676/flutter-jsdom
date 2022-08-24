@@ -3,7 +3,7 @@
  * @Author: lilonglong
  * @Date: 2022-08-19 22:14:54
  * @Last Modified by: lilonglong
- * @Last Modified time: 2022-08-23 17:13:37
+ * @Last Modified time: 2022-08-24 10:43:00
  */
 
 #ifndef JSDOM_PAGE_H_
@@ -34,6 +34,8 @@ class JSDomPage {
   ~JSDomPage();
 
   void evaluateScript(const char* script);
+
+  void testEvaluateScript();
 
  private:
   binding::qjs::ExecutionContext* m_context;

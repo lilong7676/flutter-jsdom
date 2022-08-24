@@ -121,7 +121,7 @@ if (${CMAKE_BUILD_TYPE} STREQUAL "Release" OR ${CMAKE_BUILD_TYPE} STREQUAL "RelW
   target_compile_options(jsdom PRIVATE -fno-exceptions -fvisibility=hidden -fno-rtti)
 else ()
   ### remove dynamic_cast and exceptions
-  target_compile_options(jsdom PRIVATE -fno-exceptions -fno-rtti)
+  target_compile_options(jsdom PRIVATE -fexceptions -fno-rtti)
 endif ()
 
 ### jsdom Static
