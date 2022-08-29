@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:jsdom/jsdom.dart';
 
+import './playground.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -54,10 +56,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('flutter-jsdom example'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(children: [
+            Text('Running on: $_platformVersion\n'),
+            const Playground(),
+          ]),
         ),
       ),
     );
